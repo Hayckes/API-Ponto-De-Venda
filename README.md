@@ -184,4 +184,4 @@ Fazer deploy do projeto e disponibilizar a URL.
 -   [Upload de arquivos](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/f2821d48-b7b7-486a-8158-afacb145509f)
 
 
-###### tags: `back-end` `módulo 5` `nodeJS` `PostgreSQL` `API REST` `desafio`
+###### tags: `back-end` `módulo 5` `nodeJS` `PostgreSQL` `API REST` `desafio` `grupo5`
