@@ -21,10 +21,16 @@ CREATE TABLE categorias (
     descricao varchar(255) not null
 );
 
+--Cadastrar Usuario ( Tabela/Usuario )
+INSERT INTO usuarios (nome, email, senha)
+VALUES ('adm', 'adm@email.com', '123456');
+--Consultar Usuario ( Tabela/Usuario )
+SELECT ID, nome, email AS email FROM usuarios WHERE ID = 1;
 
-
-
-
-
-
+--Cadastrar Categorias ( Tabela/Categorias )
+INSERT INTO categorias (descricao) VALUES
+  ('Informática'), ('Celulares'), ('Beleza e Perfumaria'), ('Mercado'),
+  ('Livros e Papelaria'), ('Brinquedos'), ('Moda'), ('Bebê'), ('Games');
+--Consultar Categorias ( Tabela/Categorias )
+SELECT * FROM categorias;
 
