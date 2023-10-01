@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { compararSenhas } = require('../utils/criptografarCompararSenha');
 const encontrarUsuarioPorEmail = require('../repositorios/encontrarUsuarioPorEmail');
 const { JWT_HASH } = process.env;
+
 const usuarioLogin = async (req, res) => {
   const { email, senha } = req.body;
 
@@ -26,8 +27,7 @@ const usuarioLogin = async (req, res) => {
 
     return res.status(200).json({ usuario, token });
   } catch (error) {
-    console.log(error);
-    res.status(500).json('Erro interno no servidor.');
+    res.status(400).json({message: error.message});
   }
 };
 
