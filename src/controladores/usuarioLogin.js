@@ -20,7 +20,7 @@ const usuarioLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: usuario.id }, JWT_HASH, {
-      expiresIn: '10s',
+      expiresIn: '15m',
     });
 
     delete usuario.senha;
