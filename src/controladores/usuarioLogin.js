@@ -20,14 +20,14 @@ const usuarioLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: usuario.id }, JWT_HASH, {
-      expiresIn: '30m',
+      expiresIn: '10s',
     });
 
     delete usuario.senha;
 
     return res.status(200).json({ usuario, token });
   } catch (error) {
-    res.status(400).json({message: error.message});
+    res.status(400).json({ message: error.message });
   }
 };
 

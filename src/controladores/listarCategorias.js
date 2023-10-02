@@ -2,13 +2,11 @@ const listaCategorias = require('../repositorios/listarCategorias');
 
 const listarCategorias = async (req, res) => {
   try {
-    const listaDeCategorias = await listaCategorias.categorias();
+    const listaDeCategorias = await listaCategorias();
 
     return res.status(200).json(listaDeCategorias);
   } catch (error) {
-    return res.status(404).json({
-      mensagem: 'O servidor não pode encontrar o recurso solicitado.',
-    });
+    return res.status(500).json({ mensagem: 'Erro do servidor interno' });
   }
 };
 

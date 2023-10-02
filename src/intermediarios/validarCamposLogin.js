@@ -1,8 +1,8 @@
 const validarCamposObrigatorios = require('../utils/validarCamposObrigatorios');
 
-const validarCampos = async (req, res, next) => {
-  const { nome, email, senha } = req.body;
-  const verificarCampos = validarCamposObrigatorios({ nome, email, senha });
+const validarCamposLogin = async (req, res, next) => {
+  const { email, senha } = req.body;
+  const verificarCampos = validarCamposObrigatorios({ email, senha });
 
   if (verificarCampos.result) {
     return res.status(404).json({
@@ -13,4 +13,4 @@ const validarCampos = async (req, res, next) => {
   return next();
 };
 
-module.exports = validarCampos;
+module.exports = validarCamposLogin;

@@ -1,13 +1,22 @@
-const knex = require('../config/db/conexao');
-const bcrypt = require("bcrypt")
+const { criptograrSenha } = require('../utils/criptografarCompararSenha');
+const cadastrarUsuario = require('../repositorios/cadastrarUsuario');
 
 const cadastroUsuarios = async (req, res) => {
-    const { nome, email, senha } = req.body;
+  const { nome, email, senha } = req.body;
 
-    const senhaCriptografada = await bcrypt.hash(senha, 10);
-    await knex('usuarios').insert({ nome, email, senha: senhaCriptografada });
+  try {
+    const senhaCriptografada = await criptograrSenha(senha);
+
+    await cadastrarUsuario({ nome, email, senha: senhaCriptografada });
+
     return res.status(201).json();
+  } catch (error) {
+    if (error.constraint == 'usuarios_email_key') {
+      return res.status(400).json({ mensagem: 'Email já existe' });
+    }
 
-}
+    return res.status(500).json({ mensagem: 'Erro do servidor interno' });
+  }
+};
 
 module.exports = cadastroUsuarios;

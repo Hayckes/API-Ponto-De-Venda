@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 function verificarJwt(token) {
   try {
@@ -7,12 +7,10 @@ function verificarJwt(token) {
     const decoded = jwt.verify(token, secret_key);
     return decoded;
   } catch (error) {
-    console.log(JSON.stringify(error));
     return null;
   }
 }
 
 module.exports = {
-
   verificarJwt,
 };
