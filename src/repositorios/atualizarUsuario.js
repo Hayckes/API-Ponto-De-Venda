@@ -5,7 +5,6 @@ const atualizarUsuario = ({ id, nome, email, senhaCriptografada }) => {
     .update({ nome, email, senha: senhaCriptografada })
     .where({ id })
     .returning('*')
-    .debug();
 };
 
 module.exports = atualizarUsuario;

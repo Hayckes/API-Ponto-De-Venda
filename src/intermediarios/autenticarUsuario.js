@@ -4,7 +4,7 @@ const autenticarUsuario = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization || authorization === 'Bearer') {
-    return res.status(401).json({ mensagem: 'Unauthorized' });
+    return res.status(401).json({ mensagem: 'o usuário não está autenticado' });
   }
 
   const bearer = authorization.split(' ');
@@ -18,12 +18,12 @@ const autenticarUsuario = async (req, res, next) => {
         mensagem: 'o usuário não tem permissão de acessar o recurso solicitado',
       });
     }
-
-    const { payload: id } = decoded;
+    const {id} = decoded;
     req.usuario_id = id;
+
     next();
-  } catch (err) {
-    return res.status(401).json({ mensagem: 'o usuário não está autenticado' });
+  } catch (error) {
+    return res.status(500).json({ mensagem: 'Erro interno no servidor' });
   }
 };
 

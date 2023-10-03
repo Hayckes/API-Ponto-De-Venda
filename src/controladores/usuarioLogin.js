@@ -12,22 +12,22 @@ const usuarioLogin = async (req, res) => {
     const usuario = usuariosEncontrados[0];
 
     if (usuariosEncontrados.length == 0) {
-      return res.status(404).json({ mensagem: 'E-mail ou senha inválidos' });
+      return res.status(400).json({ mensagem: 'E-mail ou senha inválidos' });
     }
 
     if (!(await compararSenhas(senha, usuario.senha))) {
-      return res.status(401).json({ mensagem: 'E-mail ou senha inválidos' });
+      return res.status(400).json({ mensagem: 'E-mail ou senha inválidos' });
     }
 
     const token = jwt.sign({ id: usuario.id }, JWT_HASH, {
-      expiresIn: '10s',
+      expiresIn: '15m',
     });
 
     delete usuario.senha;
 
     return res.status(200).json({ usuario, token });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ mensagem: 'Erro interno no servidor' });
   }
 };
 
