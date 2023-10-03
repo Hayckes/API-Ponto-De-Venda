@@ -27,7 +27,7 @@ async function atualilzarUsuario(req, res) {
       return res.status(400).json({ mensagem: 'Email já existe' });
     }
 
-    return res.status(500).json({ mensagem: 'Erro do servidor interno' });
+    return res.status(500).json({ mensagem: 'Erro interno no servidor' });
   }
 }
 
