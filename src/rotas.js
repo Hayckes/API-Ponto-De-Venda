@@ -10,8 +10,12 @@ const autenticarUsuario = require('./intermediarios/autenticarUsuario');
 const atualilzarUsuario = require('./controladores/atualizarUsuario');
 const validarCampos = require('./intermediarios/validarCampos');
 const validarCamposLogin = require('./intermediarios/validarCamposLogin');
+const cadastrarProduto = require('./controladores/cadastrarProduto');
+const validarCamposProduto = require('./intermediarios/validarCamposProduto');
 
-rotas.get('/', (req, res) => { res.send('Los Coders') });
+rotas.get('/', (req, res) => {
+  res.send('Los Coders');
+});
 
 rotas.get('/categoria', listarCategorias);
 rotas.post('/usuario', validarCampos, cadastroUsuarios);
@@ -21,5 +25,6 @@ rotas.use(autenticarUsuario);
 
 rotas.get('/usuario', perfilDetalhar);
 rotas.put('/usuario', validarCampos, atualilzarUsuario);
+rotas.post('/produto', validarCamposProduto, cadastrarProduto);
 
 module.exports = rotas;
