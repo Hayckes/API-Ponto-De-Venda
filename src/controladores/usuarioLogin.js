@@ -1,7 +1,6 @@
-const jwt = require('jsonwebtoken');
 const { compararSenhas } = require('../utils/criptografarCompararSenha');
 const encontrarUsuarioPorEmail = require('../repositorios/encontrarUsuarioPorEmail');
-const { JWT_HASH } = process.env;
+const { gerarToken } = require('../config/db/jwt');
 
 const usuarioLogin = async (req, res) => {
   const { email, senha } = req.body;
@@ -19,9 +18,7 @@ const usuarioLogin = async (req, res) => {
       return res.status(400).json({ mensagem: 'E-mail ou senha inválidos' });
     }
 
-    const token = jwt.sign({ id: usuario.id }, JWT_HASH, {
-      expiresIn: '15m',
-    });
+    const token = gerarToken(usuario.id);
 
     delete usuario.senha;
 

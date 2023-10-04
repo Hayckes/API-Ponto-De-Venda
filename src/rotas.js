@@ -11,18 +11,15 @@ const atualilzarUsuario = require('./controladores/atualizarUsuario');
 const validarCampos = require('./intermediarios/validarCampos');
 const validarCamposLogin = require('./intermediarios/validarCamposLogin');
 
-rotas.get('/', (req, res) => {
-  res.send('Desafio M05');
-});
+rotas.get('/', (req, res) => { res.send('Los Coders') });
 
+rotas.get('/categoria', listarCategorias);
 rotas.post('/usuario', validarCampos, cadastroUsuarios);
 rotas.post('/login', validarCamposLogin, usuarioLogin);
 
-//Intermediario ( Autenticador )
 rotas.use(autenticarUsuario);
 
 rotas.get('/usuario', perfilDetalhar);
-rotas.get('/categoria', listarCategorias);
 rotas.put('/usuario', validarCampos, atualilzarUsuario);
 
 module.exports = rotas;
