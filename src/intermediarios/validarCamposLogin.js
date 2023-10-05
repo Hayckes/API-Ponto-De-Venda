@@ -1,13 +1,10 @@
-const validarCamposObrigatorios = require('../utils/validarCamposObrigatorios');
+const schemaLogin = require('../shema/schemaLogin');
 
-const validarCamposLogin = async (req, res, next) => {
-  const { email, senha } = req.body;
-  const verificarCampos = validarCamposObrigatorios({ email, senha });
+const validarCamposLogin = (req, res, next) => {
+  const { error } = schemaLogin.validate(req.body);
 
-  if (verificarCampos.result) {
-    return res.status(404).json({
-      mensagem: `É necessario informar os seguintes campos: ${verificarCampos.missingFields}`,
-    });
+  if (error) {
+    return res.status(400).json({ mensagem: error.details[0].message });
   }
 
   return next();

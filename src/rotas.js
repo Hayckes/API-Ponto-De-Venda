@@ -18,7 +18,7 @@ const produtosListar = require('./controladores/produtosListar');
 
 const produtosExcluir = require('./controladores/produtosExcluir');
 const validarCamposProdutosPorCategoria = require('./intermediarios/validarCamposProdutosPorCategoria');
-
+const validarCamposExcluirProdutoPorId = require('./intermediarios/validarCamposExcluirProdutoPorId');
 
 rotas.get('/', (req, res) => {
   res.send('Los Coders');
@@ -35,7 +35,7 @@ rotas.put('/usuario', validarCampos, atualilzarUsuario);
 
 //Fase 2
 rotas.post('/produto', validarCamposProduto, cadastrarProduto);
-rotas.delete('/produto/:id', produtosExcluir);
+rotas.delete('/produto/:id', validarCamposExcluirProdutoPorId, produtosExcluir);
 rotas.get('/produto', validarCamposProdutosPorCategoria, produtosListar);
 
 module.exports = rotas;
