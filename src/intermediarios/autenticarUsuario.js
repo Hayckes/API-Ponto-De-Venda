@@ -21,7 +21,7 @@ const autenticarUsuario = async (req, res, next) => {
     const {id} = decoded;
     req.usuario_id = id;
 
-    return next();
+    next();
   } catch (error) {
     return res.status(500).json({ mensagem: 'Erro interno no servidor' });
   }

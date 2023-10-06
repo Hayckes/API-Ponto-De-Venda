@@ -1,6 +1,8 @@
+// const encontrarUsuarioPorId = require('../repositorios/encontrarUsuarioPorId');
 const validarCamposObrigatorios = require('../utils/validarCamposObrigatorios');
 const { criptograrSenha } = require('../utils/criptografarCompararSenha');
 const atualizarUsuario = require('../repositorios/atualizarUsuario');
+// const encontrarUsuarioPorEmail = require('../repositorios/encontrarUsuarioPorEmail');
 
 async function atualilzarUsuario(req, res) {
   try {
@@ -10,7 +12,7 @@ async function atualilzarUsuario(req, res) {
     const verificarCampos = validarCamposObrigatorios({ nome, email, senha });
 
     if (verificarCampos.result) {
-      return res.status(400).json({
+      return res.status(404).json({
         mensagem: `É necessario informar os seguintes campos: ${verificarCampos.missingFields}`,
       });
     }
