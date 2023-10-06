@@ -1,4 +1,4 @@
-const { verificarJwt } = require('../config/db/jwt');
+const { verificarJwt } = require('../config/jwt');
 
 const autenticarUsuario = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -7,8 +7,7 @@ const autenticarUsuario = async (req, res, next) => {
     return res.status(401).json({ mensagem: 'o usuário não está autenticado' });
   }
 
-  const bearer = authorization.split(' ');
-  const token = bearer[1];
+  const token = authorization.split(' ')[1];
 
   try {
     const decoded = verificarJwt(token);
@@ -18,7 +17,7 @@ const autenticarUsuario = async (req, res, next) => {
         mensagem: 'o usuário não tem permissão de acessar o recurso solicitado',
       });
     }
-    const {id} = decoded;
+    const { id } = decoded;
     req.usuario_id = id;
 
     return next();

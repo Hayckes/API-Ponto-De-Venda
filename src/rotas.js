@@ -1,36 +1,55 @@
 const express = require('express');
 const rotas = express.Router();
 
-const cadastroUsuarios = require('./controladores/cadastroUsuario');
-const usuarioLogin = require('./controladores/usuarioLogin');
-const perfilDetalhar = require('./controladores/perfilDetalhar');
 const listarCategorias = require('./controladores/listarCategorias');
-
 const autenticarUsuario = require('./intermediarios/autenticarUsuario');
-const atualilzarUsuario = require('./controladores/atualizarUsuario');
 const validarCampos = require('./intermediarios/validarCampos');
-const validarCamposLogin = require('./intermediarios/validarCamposLogin');
-const cadastrarProduto = require('./controladores/cadastrarProduto');
-const validarCamposProduto = require('./intermediarios/validarCamposProduto');
-const editarProdutos = require('./controladores/editarProdutos');
-const editarCliente = require('./controladores/editarCliente');
-const listarClientes = require('./controladores/listarClientes');
+const detalharCliente = require('./controladores/detalharCliente');
+
+const cadastrarCliente = require('./controladores/cadastrarCliente');
+
+const usuarioContolador = require('./controladores/usuario/usuarioControlador');
+const produtoControlador = require('./controladores/produto/produtoControlador');
+const validarCamposInter = require('./intermediarios/validarCampos/validarCampos');
+const validarCampos = require('./intermediarios/validarCampos');
+
 
 rotas.get('/', (req, res) => {
   res.send('Los Coders');
 });
 
 rotas.get('/categoria', listarCategorias);
-rotas.post('/usuario', validarCampos, cadastroUsuarios);
-rotas.post('/login', validarCamposLogin, usuarioLogin);
+rotas.post('/usuario', usuarioContolador.cadastrarUsuario);
+rotas.post('/login', validarCamposInter.login, usuarioContolador.usuarioLogin);
 
 rotas.use(autenticarUsuario);
 
-rotas.get('/usuario', perfilDetalhar);
-rotas.put('/usuario', validarCampos, atualilzarUsuario);
+//Fase 2
 rotas.post('/produto', validarCamposProduto, cadastrarProduto);
-rotas.put('/produtos/:id', validarCamposProduto, editarProdutos);
-rotas.put('/cliente/:id', editarCliente);
-rotas.get('/clientes', listarClientes);
+rotas.get('/produto', validarCamposProdutosPorCategoria, produtosListar);
+
+rotas.post('/cliente', validarCamposCliente, cadastrarCliente);
+
+rotas.get('/cliente/:id', detalharCliente);
+
+rotas.get('/usuario', usuarioContolador.perfilDetalhar);
+rotas.put('/usuario', validarCampos, usuarioContolador.atualizarUsuario);
+
+rotas.post(
+  '/produto',
+  validarCamposInter.produto,
+  produtoControlador.cadastrarProduto
+);
+rotas.delete(
+  '/produto/:id',
+  validarCamposInter.excluirProdutoPorId,
+  produtoControlador.produtosExcluir
+);
+rotas.get(
+  '/produto',
+  validarCamposInter.produtosPorCategoria,
+  produtoControlador.produtosListar
+);
+rotas.get('/produto/:id', produtoControlador.detalharProduto);
 
 module.exports = rotas;

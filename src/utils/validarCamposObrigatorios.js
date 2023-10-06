@@ -12,7 +12,7 @@ function validarCamposObrigatorios(...requiredFields) {
   if (missingFields.length > 0) {
     return {
       result: true,
-      missingFields: missingFields.join(', '),
+      missingFields: missingFields.join(", "),
     };
   } else {
     return {
@@ -21,4 +21,4 @@ function validarCamposObrigatorios(...requiredFields) {
   }
 }
 
-module.exports = validarCamposObrigatorios;
+module.exports = validarCamposObrigatorios

@@ -1,4 +1,4 @@
-const listaCategorias = require('../repositorios/listarCategorias');
+const listaCategorias = require('../repositorios/categoria/listarCategorias');
 
 const listarCategorias = async (req, res) => {
   try {
