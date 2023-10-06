@@ -1,10 +1,9 @@
 function validarCamposObrigatorios(...requiredFields) {
-  // Parametros devem ser passados dentro de um objeto
   const missingFields = [];
 
   for (const field of requiredFields) {
     for (const prop in field) {
-      if (field[prop] === undefined || field[prop] === "") {
+      if (!field[prop].trim()) {
         missingFields.push(prop);
       }
     }
@@ -13,7 +12,7 @@ function validarCamposObrigatorios(...requiredFields) {
   if (missingFields.length > 0) {
     return {
       result: true,
-      missingFields: missingFields.join(", "),
+      missingFields: missingFields.join(', '),
     };
   } else {
     return {
@@ -22,4 +21,4 @@ function validarCamposObrigatorios(...requiredFields) {
   }
 }
 
-module.exports = validarCamposObrigatorios
+module.exports = validarCamposObrigatorios;
