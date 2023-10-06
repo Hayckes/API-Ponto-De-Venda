@@ -1,4 +1,4 @@
-const knex = require('../config/db/conexao');
+const knex = require('../../config/db/conexao');
 
 const listarProdutos = ({ categoria_id }) => {
   if (categoria_id) {

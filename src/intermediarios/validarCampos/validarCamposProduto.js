@@ -1,4 +1,4 @@
-const schemaProduto = require('../shema/schemaCadastrarProduto');
+const schemaProduto = require('../../shema/schemaCadastrarProduto');
 
 const validarCamposProduto = (req, res, next) => {
   const { error } = schemaProduto.validate(req.body);

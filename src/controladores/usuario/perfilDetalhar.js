@@ -1,10 +1,12 @@
-const encontrarUsuarioPorId = require('../repositorios/encontrarUsuarioPorId');
+const usuarioRepositorio = require('../../repositorios/usuario/usuarioRepositorio');
 
 const perfilDetalhar = async (req, res) => {
   const id = req.usuario_id;
 
   try {
-    const detalhesUsuario = (await encontrarUsuarioPorId(id))[0];
+    const detalhesUsuario = (
+      await usuarioRepositorio.encontrarUsuarioPorId(id)
+    )[0];
     delete detalhesUsuario.senha;
 
     return res.status(200).json(detalhesUsuario);
