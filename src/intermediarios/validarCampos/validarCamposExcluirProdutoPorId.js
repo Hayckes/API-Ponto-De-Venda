@@ -1,4 +1,4 @@
-const schemaExcluirProdutoPorId = require('../shema/schemaExcluirProdutoPorId');
+const schemaExcluirProdutoPorId = require('../../shema/schemaExcluirProdutoPorId');
 
 const validarCamposExcluirProdutoPorId = (req, res, next) => {
   const { id } = req.query;

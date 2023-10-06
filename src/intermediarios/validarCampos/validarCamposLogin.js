@@ -1,4 +1,4 @@
-const schemaLogin = require('../shema/schemaLogin');
+const schemaLogin = require('../../shema/schemaLogin');
 
 const validarCamposLogin = (req, res, next) => {
   const { error } = schemaLogin.validate(req.body);

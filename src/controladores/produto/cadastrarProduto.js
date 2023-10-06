@@ -1,12 +1,12 @@
-const cadastrarProdutoRepositorio = require('../repositorios/cadastrarProduto');
-const listarCategoriasPorIdRepositorio = require('../repositorios/listarCategoriasPorId');
+const produtoRepositorio = require('../../repositorios/produto/produtoRepositorio');
+const categoriaRepositorio = require('../../repositorios/categoria/categoriaRepositorio');
 
 const cadastrarProduto = async (req, res) => {
   const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
   try {
     const listarCategoria = (
-      await listarCategoriasPorIdRepositorio(categoria_id)
+      await categoriaRepositorio.listarCategoriasPorId(categoria_id)
     )[0];
 
     if (!listarCategoria) {
@@ -14,7 +14,7 @@ const cadastrarProduto = async (req, res) => {
     }
 
     const produto = (
-      await cadastrarProdutoRepositorio({
+      await produtoRepositorio.cadastrarProduto({
         descricao,
         quantidade_estoque,
         valor,

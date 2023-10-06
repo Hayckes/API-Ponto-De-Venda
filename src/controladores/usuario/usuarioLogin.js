@@ -1,12 +1,13 @@
-const { compararSenhas } = require('../utils/criptografarCompararSenha');
-const encontrarUsuarioPorEmail = require('../repositorios/encontrarUsuarioPorEmail');
-const { gerarToken } = require('../config/db/jwt');
+const { compararSenhas } = require('../../utils/criptografarCompararSenha');
+const usuarioRepositorio = require('../../repositorios/usuario/usuarioRepositorio');
+const { gerarToken } = require('../../config/jwt');
 
 const usuarioLogin = async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const usuariosEncontrados = await encontrarUsuarioPorEmail(email);
+    const usuariosEncontrados =
+      await usuarioRepositorio.encontrarUsuarioPorEmail(email);
 
     const usuario = usuariosEncontrados[0];
 

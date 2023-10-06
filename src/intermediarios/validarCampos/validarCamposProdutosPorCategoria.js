@@ -1,4 +1,4 @@
-const schemaProdutosPorCategoria = require('../shema/schemaProdutosPorCategoria');
+const schemaProdutosPorCategoria = require('../../shema/schemaProdutosPorCategoria');
 
 const validarCamposProdutosPorCategoria = (req, res, next) => {
   const { categoria_id } = req.query;
