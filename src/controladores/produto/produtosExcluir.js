@@ -1,10 +1,10 @@
-const excluirProdutos = require('../repositorios/excluirProdutos');
+const produtoRepositorio = require('../../repositorios/produto/produtoRepositorio');
 
 const produtosExcluir = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const existeProduto = await excluirProdutos({ id });
+    const existeProduto = await produtoRepositorio.excluirProdutos({ id });
 
     if (!existeProduto) {
       return res.status(400).json({ mensagem: 'Produto não encontrado' });

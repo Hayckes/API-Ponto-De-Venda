@@ -1,8 +1,8 @@
-const validarCamposObrigatorios = require('../utils/validarCamposObrigatorios');
-const { criptograrSenha } = require('../utils/criptografarCompararSenha');
-const atualizarUsuario = require('../repositorios/atualizarUsuario');
+const validarCamposObrigatorios = require('../../utils/validarCamposObrigatorios');
+const { criptograrSenha } = require('../../utils/criptografarCompararSenha');
+const usuarioRepositorio = require('../../repositorios/usuario/usuarioRepositorio');
 
-async function atualilzarUsuario(req, res) {
+async function atualizarUsuario(req, res) {
   try {
     const { nome, email, senha } = req.body;
     const id = req.usuario_id;
@@ -17,7 +17,12 @@ async function atualilzarUsuario(req, res) {
 
     const senhaCriptografada = await criptograrSenha(senha);
 
-    await atualizarUsuario({ id, nome, email, senha: senhaCriptografada });
+    await usuarioRepositorio.atualizarUsuario({
+      id,
+      nome,
+      email,
+      senha: senhaCriptografada,
+    });
 
     return res.status(204).json();
   } catch (error) {
@@ -29,4 +34,4 @@ async function atualilzarUsuario(req, res) {
   }
 }
 
-module.exports = atualilzarUsuario;
+module.exports = atualizarUsuario;

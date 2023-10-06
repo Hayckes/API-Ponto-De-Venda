@@ -1,4 +1,4 @@
-const { verificarJwt } = require('../config/db/jwt');
+const { verificarJwt } = require('../config/jwt');
 
 const autenticarUsuario = async (req, res, next) => {
   const { authorization } = req.headers;

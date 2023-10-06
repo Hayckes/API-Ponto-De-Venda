@@ -13,7 +13,7 @@ function verificarJwt(token) {
 
 function gerarToken(id) {
   const token = jwt.sign({ id }, JWT_HASH, {
-    expiresIn: '15m',
+    expiresIn: '1h',
   });
   return token;
 }

@@ -1,14 +1,15 @@
-const listarProdutos = require('../repositorios/listarProdutos');
+const produtoRepositorio = require('../../repositorios/produto/produtoRepositorio');
 
 const produtosListar = async (req, res) => {
   const categoria_id = req.query;
 
   try {
     if (categoria_id) {
-      const produtosFiltrados = await listarProdutos(categoria_id);
+      const produtosFiltrados =
+        await produtoRepositorio.listarProdutos(categoria_id);
       return res.status(200).json(produtosFiltrados);
     }
-    const listaDeCategorias = await listarProdutos();
+    const listaDeCategorias = await produtoRepositorio.listarProdutos();
 
     return res.status(200).json(listaDeCategorias);
   } catch (error) {
