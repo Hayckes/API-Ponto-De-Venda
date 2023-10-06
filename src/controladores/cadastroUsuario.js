@@ -3,13 +3,16 @@ const cadastrarUsuario = require('../repositorios/cadastrarUsuario');
 
 const cadastroUsuarios = async (req, res) => {
   const { nome, email, senha } = req.body;
-
   try {
     const senhaCriptografada = await criptograrSenha(senha);
 
-    await cadastrarUsuario({ nome, email, senha: senhaCriptografada });
+    const usuario = (
+      await cadastrarUsuario({ nome, email, senha: senhaCriptografada })
+    )[0];
 
-    return res.status(201).json();
+    delete usuario.senha;
+
+    return res.status(201).json(usuario);
   } catch (error) {
     if (error.constraint == 'usuarios_email_key') {
       return res.status(400).json({ mensagem: 'Email já existe' });
