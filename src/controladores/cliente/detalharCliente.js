@@ -1,10 +1,10 @@
-const encontrarClientePorIdRepositorio = require('../repositorios/encontrarClientePorIdRepositorio');
+const clienteRepositorio = require('../../repositorios/cliente/clienteRepositorio');
 
 const detalharCliente = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const cliente = (await encontrarClientePorIdRepositorio(id))[0];
+    const cliente = (await clienteRepositorio.encontrarClientePorId(id))[0];
 
     if (!cliente) {
       return res.status(404).json({ mensagem: 'Cliente não encontrado!' });

@@ -1,6 +1,6 @@
 const schemaProduto = require('../../shema/schemaCadastrarProduto');
 
-const validarCamposProduto = (req, res, next) => {
+const produto = (req, res, next) => {
   const { error } = schemaProduto.validate(req.body);
 
   if (error) {
@@ -10,4 +10,4 @@ const validarCamposProduto = (req, res, next) => {
   return next();
 };
 
-module.exports = validarCamposProduto;
+module.exports = produto;
