@@ -7,7 +7,7 @@ const produtosExcluir = async (req, res) => {
     const existeProduto = await produtoRepositorio.excluirProdutos({ id });
 
     if (!existeProduto) {
-      return res.status(400).json({ mensagem: 'Produto não encontrado' });
+      return res.status(404).json({ mensagem: 'Produto não encontrado' });
     }
 
     return res.status(204).send();
