@@ -1,6 +1,6 @@
 const schemaProdutosPorCategoria = require('../../shema/schemaProdutosPorCategoria');
 
-const validarCamposProdutosPorCategoria = (req, res, next) => {
+const produtosPorCategoria = (req, res, next) => {
   const { categoria_id } = req.query;
 
   if (categoria_id == undefined) {
@@ -16,4 +16,4 @@ const validarCamposProdutosPorCategoria = (req, res, next) => {
   return next();
 };
 
-module.exports = validarCamposProdutosPorCategoria;
+module.exports = produtosPorCategoria;

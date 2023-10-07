@@ -1,4 +1,4 @@
-const knex = require('../config/db/conexao');
+const knex = require('../../config/db/conexao');
 
 const cadastrarClienteRepositorio = (nome, email, cpf) => {
     return knex('clientes').insert({

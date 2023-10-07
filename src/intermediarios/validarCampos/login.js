@@ -1,6 +1,6 @@
 const schemaLogin = require('../../shema/schemaLogin');
 
-const validarCamposLogin = (req, res, next) => {
+const login = (req, res, next) => {
   const { error } = schemaLogin.validate(req.body);
 
   if (error) {
@@ -10,4 +10,4 @@ const validarCamposLogin = (req, res, next) => {
   return next();
 };
 
-module.exports = validarCamposLogin;
+module.exports = login;

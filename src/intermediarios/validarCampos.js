@@ -1,16 +1,13 @@
-const validarCamposObrigatorios = require('../utils/validarCamposObrigatorios');
+const cliente = require('./validarCampos/cliente');
+const login = require('./validarCampos/login');
+const produto = require('./validarCampos/produto');
+const produtosPorCategoria = require('./validarCampos/produtosPorCategoria');
+const usuario = require('./validarCampos/usuario');
 
-const validarCampos = async (req, res, next) => {
-  const { nome, email, senha } = req.body;
-  const verificarCampos = validarCamposObrigatorios({ nome, email, senha });
-
-  if (verificarCampos.result) {
-    return res.status(404).json({
-      mensagem: `É necessario informar os seguintes campos: ${verificarCampos.missingFields}`,
-    });
-  }
-
-  return next();
+module.exports = {
+  login,
+  produto,
+  produtosPorCategoria,
+  cliente,
+  usuario
 };
-
-module.exports = validarCampos;
