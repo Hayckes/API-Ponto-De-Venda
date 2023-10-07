@@ -1,22 +1,23 @@
 const express = require('express');
 const rotas = express.Router();
 
-const listarCategorias = require('./controladores/listarCategorias');
-const autenticarUsuario = require('./intermediarios/autenticarUsuario');
-const validarCampos = require('./intermediarios/validarCampos');
-const detalharCliente = require('./controladores/detalharCliente');
-
-const cadastrarCliente = require('./controladores/cadastrarCliente');
-
+//Objeto de controladores
 const usuarioContolador = require('./controladores/usuario/usuarioControlador');
 const produtoControlador = require('./controladores/produto/produtoControlador');
+//Imports Controladores
+const listarCategorias = require('./controladores/listarCategorias');
+const detalharCliente = require('./controladores/detalharCliente');
+const cadastrarCliente = require('./controladores/cadastrarCliente');
+
+//Objeto de intermediarios
 const validarCamposInter = require('./intermediarios/validarCampos/validarCampos');
+//Imports intermediarios
+const autenticarUsuario = require('./intermediarios/autenticarUsuario');
 const validarCampos = require('./intermediarios/validarCampos');
+const validarCamposCliente = require('./intermediarios/validarCamposCadastroCliente');
 
-
-rotas.get('/', (req, res) => {
-  res.send('Los Coders');
-});
+//Rotas - Fase 1
+rotas.get('/', (req, res) => { res.send('Los Coders')});
 
 rotas.get('/categoria', listarCategorias);
 rotas.post('/usuario', usuarioContolador.cadastrarUsuario);
@@ -24,32 +25,21 @@ rotas.post('/login', validarCamposInter.login, usuarioContolador.usuarioLogin);
 
 rotas.use(autenticarUsuario);
 
-//Fase 2
-rotas.post('/produto', validarCamposProduto, cadastrarProduto);
-rotas.get('/produto', validarCamposProdutosPorCategoria, produtosListar);
-
-rotas.post('/cliente', validarCamposCliente, cadastrarCliente);
-
-rotas.get('/cliente/:id', detalharCliente);
-
 rotas.get('/usuario', usuarioContolador.perfilDetalhar);
 rotas.put('/usuario', validarCampos, usuarioContolador.atualizarUsuario);
 
-rotas.post(
-  '/produto',
-  validarCamposInter.produto,
-  produtoControlador.cadastrarProduto
-);
-rotas.delete(
-  '/produto/:id',
-  validarCamposInter.excluirProdutoPorId,
-  produtoControlador.produtosExcluir
-);
-rotas.get(
-  '/produto',
-  validarCamposInter.produtosPorCategoria,
-  produtoControlador.produtosListar
-);
+//Rotas - Fase 2
+//Rotas de Produtos
+rotas.post('/produto', validarCamposInter.produto, produtoControlador.cadastrarProduto);
+//Editar dados do produto
+rotas.get('/produto', validarCamposInter.produtosPorCategoria, produtoControlador.produtosListar);
 rotas.get('/produto/:id', produtoControlador.detalharProduto);
+rotas.delete('/produto/:id', validarCamposInter.excluirProdutoPorId, produtoControlador.produtosExcluir);
+
+//Rotas de Clientes
+rotas.post('/cliente', validarCamposCliente, cadastrarCliente);
+//Editar dados do cliente
+//Listar cliente
+rotas.get('/cliente/:id', detalharCliente);
 
 module.exports = rotas;
