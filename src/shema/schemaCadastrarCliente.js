@@ -16,7 +16,13 @@ const schemaCliente = Joi.object({
         'string.min': 'A senha deve ser no mínimo 11 caracter',
         'string.max': 'A senha deve ser no máximo 11 caracter',
         'string.empty': 'Campo CPF deve ser preenchido.',
-    })
+    }),
+    cep: Joi.string().allow(null, ''),
+    rua: Joi.string().allow(null, ''),
+    numero: Joi.string().allow(null, 0),
+    bairro: Joi.string().allow(null, ''),
+    cidade: Joi.string().allow(null, ''),
+    estado: Joi.string().allow(null, '')
 });
 
 module.exports = schemaCliente;
