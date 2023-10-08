@@ -1,13 +1,10 @@
-const cadastrarClienteRepositorio = require("../../repositorios/cliente/cadastrarCliente");
-// const clienteRepositorio = require("../../repositorios/cliente/cadastrarCliente");
+const clienteRepositorio = require("../../repositorios/cliente/clienteRepositorio");
 
 const cadastrarCliente = async (req, res) => {
-  const { nome, email, cpf, cep, rua, numero, bairro, cidade, estado } = req.body;
 
   try {
 
-    const cliente = (await cadastrarClienteRepositorio(
-      nome, email, cpf, cep, rua, numero, bairro, cidade, estado))[0];
+    const cliente = (await clienteRepositorio.cadastrarCliente(req.body))[0];
 
     return res.status(201).json(cliente);
 

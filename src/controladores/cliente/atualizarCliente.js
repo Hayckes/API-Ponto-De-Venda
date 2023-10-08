@@ -1,32 +1,22 @@
 const clienteRepositorio = require('../../repositorios/cliente/clienteRepositorio');
-const validarCamposObrigatorios = require('../../utils/validarCamposObrigatorios');
 
-async function atualizarCliente(req, res) {
-  const { nome, email, cpf } = req.body;
+const atualizarCliente = async (req, res) => {
   const { id } = req.params;
-  try {
-    const campos = validarCamposObrigatorios({ nome, email, cpf });
-    if (campos.result) {
-      return res.status(404).json({
-        mensagem: `É necessario informar os seguintes campos: ${campos.missingFields}`,
-      });
-    }
 
+  try {
     const clientes = await clienteRepositorio.encontrarClientePorId(id);
 
     if (!clientes[0]) {
-      return res.status(404).json({ mensagem: 'Produto não existente' });
+      return res.status(404).json({ mensagem: 'Cliente não existe' });
     }
 
-    await clienteRepositorio.atualizarCliente({
-      id,
-      nome,
-      email,
-      cpf,
+    const clienteAtualizado = await clienteRepositorio.atualizarCliente({
+      id, ...req.body
     });
 
-    return res.status(204).json();
+    return res.status(200).json(clienteAtualizado[0]);
   } catch (error) {
+
     if (error.constraint == 'usuarios_email_key') {
       return res.status(400).json({ mensagem: 'Email já existe' });
     }
