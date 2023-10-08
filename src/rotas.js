@@ -37,7 +37,7 @@ rotas.delete('/produto/:id', produtoControlador.produtosExcluir);
 //Rotas de Clientes
 rotas.post('/cliente', validarCamposInter.cliente, clienteControlador.cadastrarCliente);
 //Atualizar dados do cliente
-rotas.put('/cliente', validarCamposInter.cliente, clienteControlador.atualizarCliente);
+rotas.put('/cliente/:id', validarCamposInter.cliente, clienteControlador.atualizarCliente);
 //Listar cliente
 rotas.get('/cliente/:id', clienteControlador.detalharCliente);
 

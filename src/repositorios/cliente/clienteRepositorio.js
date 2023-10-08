@@ -1,6 +1,6 @@
-const atualizarCliente = require("../../controladores/cliente/atualizarCliente");
-const cadastrarCliente = require("../../controladores/cliente/cadastrarCliente");
-const encontrarClientePorId = require("./encontrarClientePorId");
+const atualizarCliente = require("../cliente/atualizarCliente");
+const cadastrarCliente = require("../cliente/cadastrarCliente");
+const encontrarClientePorId = require("../cliente/encontrarClientePorId");
 
 
 module.exports = { atualizarCliente, encontrarClientePorId, cadastrarCliente }
