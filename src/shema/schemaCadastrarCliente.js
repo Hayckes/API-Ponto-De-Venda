@@ -19,7 +19,9 @@ const schemaCliente = Joi.object({
   }),
   cep: Joi.string().allow(null, ''),
   rua: Joi.string().allow(null, ''),
-  numero: Joi.string().allow(null, 0),
+  numero: Joi.number().allow(null, 0).messages({
+    'number.base': 'O campo número precisar ser número valido!'
+  }),
   bairro: Joi.string().allow(null, ''),
   cidade: Joi.string().allow(null, ''),
   estado: Joi.string().allow(null, '')
