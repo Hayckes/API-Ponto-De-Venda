@@ -123,7 +123,7 @@ DROP TABLE produtos;
 -- Criação da tabela ( Produtos )
 CREATE TABLE produtos (
     id serial primary key,
-    descricao varchar(255) NOT NULL,
+    descricao varchar(255) not null,
     quantidade_estoque int not null,
     valor int not null,
     categoria_id int not null,
@@ -131,8 +131,8 @@ CREATE TABLE produtos (
 );
 -- Inserção de ( Produtos )
 INSERT INTO produtos (descricao, quantidade_estoque, valor, categoria_id, produto_imagem) VALUES
-    ('Smartphone', 10, 120000, 2),
-    ('Camiseta', 50, 2500, 7),
-    ('Livro de Ficção', 30, 2000, 5),
-    ('Notebook', 5, 250000, 1),
-    ('Sapato', 20, 5000, 7);
+    ('Smartphone', 10, 120000, 2, 'imagem_smartphone.jpg'),
+    ('Camiseta', 50, 2500, 7, 'imagem_camiseta.jpg'),
+    ('Livro de Ficção', 30, 2000, 5, 'imagem_livro.jpg'),
+    ('Notebook', 5, 250000, 1, 'imagem_notebook.jpg'),
+    ('Sapato', 20, 5000, 7, 'imagem_sapato.jpg');
