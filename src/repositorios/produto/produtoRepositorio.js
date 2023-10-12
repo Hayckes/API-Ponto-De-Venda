@@ -1,4 +1,3 @@
-const cadastrarProduto = require('./cadastrarProduto');
 const detalharProduto = require('./detalharProduto');
 const editarProduto = require('./editarProduto');
 const encontrarProdutoPorId = require('./encontrarProdutoPorId');
@@ -8,7 +7,6 @@ const cadastrarProdutos = require('./cadastrarProdutoAtualizado');
 
 module.exports = {
   cadastrarProdutos,
-  cadastrarProduto,
   detalharProduto,
   excluirProdutos,
   listarProdutos,
