@@ -12,6 +12,7 @@ const listarCategorias = require('./controladores/listarCategorias');
 const validarCamposInter = require('./intermediarios/validarCampos');
 //Imports intermediarios
 const autenticarUsuario = require('./intermediarios/autenticarUsuario');
+const pedidosListar = require('./controladores/pedido/pedidosListar');
 
 //Rotas - Fase 1
 rotas.get('/', (req, res) => { res.send('Los Coders') });
@@ -40,5 +41,8 @@ rotas.post('/cliente', validarCamposInter.cliente, clienteControlador.cadastrarC
 rotas.put('/cliente/:id', validarCamposInter.cliente, clienteControlador.atualizarCliente);
 //Listar cliente
 rotas.get('/cliente/:id', clienteControlador.detalharCliente);
+
+rotas.get('/pedido/:id', pedidosListar)
+rotas.get('/pedido', pedidosListar)
 
 module.exports = rotas;
