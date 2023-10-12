@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('./utils/multer')
 const rotas = express.Router();
 
 //Objeto de controladores
@@ -26,8 +27,9 @@ rotas.get('/usuario', usuarioContolador.perfilDetalhar);
 rotas.put('/usuario', validarCamposInter.usuario, usuarioContolador.atualizarUsuario);
 
 //Rotas - Fase 2
-//Rotas de Produtos
-rotas.post('/produto', validarCamposInter.produto, produtoControlador.cadastrarProduto);
+//Rotas de Produtos Atualizado (Envio de Imagem)
+rotas.post('/produtoImg',  multer.single('imagem'), validarCamposInter.produto, produtoControlador.produtoCadastrar);
+
 //Editar dados do produto
 rotas.get('/produto', validarCamposInter.produtosPorCategoria, produtoControlador.produtosListar);
 rotas.get('/produto/:id', produtoControlador.detalharProduto);
