@@ -11,6 +11,10 @@ const knex = require('knex')({
     password: DB_PASSWORD,
     database: DB_DATABASE,
   },
+  pool: {
+    min: 0,
+    max: 10,
+  }
 });
 
 module.exports = knex;

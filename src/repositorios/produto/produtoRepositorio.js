@@ -1,3 +1,4 @@
+const atualizarProdutos = require('./atualizarProdutos');
 const cadastrarProduto = require('./cadastrarProduto');
 const detalharProduto = require('./detalharProduto');
 const editarProduto = require('./editarProduto');
@@ -11,5 +12,6 @@ module.exports = {
   excluirProdutos,
   listarProdutos,
   editarProduto,
-  encontrarProdutoPorId
+  encontrarProdutoPorId,
+  atualizarProdutos
 };

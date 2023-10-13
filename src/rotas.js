@@ -5,6 +5,7 @@ const rotas = express.Router();
 const usuarioContolador = require('./controladores/usuario/usuarioControlador');
 const produtoControlador = require('./controladores/produto/produtoControlador');
 const clienteControlador = require('./controladores/cliente/clienteControlador')
+const pedidoControlador = require('./controladores/pedido/pedidoControlador')
 //Imports Controladores
 const listarCategorias = require('./controladores/listarCategorias');
 
@@ -40,5 +41,9 @@ rotas.post('/cliente', validarCamposInter.cliente, clienteControlador.cadastrarC
 rotas.put('/cliente/:id', validarCamposInter.cliente, clienteControlador.atualizarCliente);
 //Listar cliente
 rotas.get('/cliente/:id', clienteControlador.detalharCliente);
+
+
+// Pedido
+rotas.post('/pedido', validarCamposInter.pedido, pedidoControlador.cadastrarPedido);
 
 module.exports = rotas;
