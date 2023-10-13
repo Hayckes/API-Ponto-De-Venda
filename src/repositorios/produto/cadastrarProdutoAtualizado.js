@@ -1,10 +1,10 @@
 const knex = require('../../config/db/conexao');
 
-const cadastrarProduto = ({
+const cadastrarProdutos = ({
   descricao,
   quantidade_estoque,
   valor,
-  categoria_id,
+  categoria_id, imagem
 }) => {
   return knex('produtos')
     .insert({
@@ -12,8 +12,9 @@ const cadastrarProduto = ({
       quantidade_estoque,
       valor,
       categoria_id,
+      produto_imagem: imagem
     })
     .returning('*');
 };
 
-module.exports = cadastrarProduto;
+module.exports = cadastrarProdutos;

@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('./utils/multer')
 const rotas = express.Router();
 
 //Objeto de controladores
@@ -13,6 +14,7 @@ const listarCategorias = require('./controladores/listarCategorias');
 const validarCamposInter = require('./intermediarios/validarCampos');
 //Imports intermediarios
 const autenticarUsuario = require('./intermediarios/autenticarUsuario');
+const pedidosListar = require('./controladores/pedido/pedidosListar');
 
 //Rotas - Fase 1
 rotas.get('/', (req, res) => { res.send('Los Coders') });
@@ -27,8 +29,9 @@ rotas.get('/usuario', usuarioContolador.perfilDetalhar);
 rotas.put('/usuario', validarCamposInter.usuario, usuarioContolador.atualizarUsuario);
 
 //Rotas - Fase 2
-//Rotas de Produtos
-rotas.post('/produto', validarCamposInter.produto, produtoControlador.cadastrarProduto);
+//Rotas de Produtos Atualizado (Envio de Imagem)
+rotas.post('/produtoImg',  multer.single('imagem'), validarCamposInter.produto, produtoControlador.produtoCadastrar);
+
 //Editar dados do produto
 rotas.get('/produto', validarCamposInter.produtosPorCategoria, produtoControlador.produtosListar);
 rotas.get('/produto/:id', produtoControlador.detalharProduto);
@@ -42,8 +45,9 @@ rotas.put('/cliente/:id', validarCamposInter.cliente, clienteControlador.atualiz
 //Listar cliente
 rotas.get('/cliente/:id', clienteControlador.detalharCliente);
 
-
 // Pedido
 rotas.post('/pedido', validarCamposInter.pedido, pedidoControlador.cadastrarPedido);
+rotas.get('/pedido/:id', pedidosListar)
+rotas.get('/pedido', pedidosListar)
 
 module.exports = rotas;
