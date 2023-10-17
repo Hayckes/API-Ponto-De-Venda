@@ -30,7 +30,7 @@ rotas.put('/usuario', validarCamposInter.usuario, usuarioContolador.atualizarUsu
 
 //Rotas - Fase 2
 //Rotas de Produtos Atualizado (Envio de Imagem)
-rotas.post('/produtoImg',  multer.single('imagem'), validarCamposInter.produto, produtoControlador.produtoCadastrar);
+rotas.post('/produto',  multer.single('imagem'), validarCamposInter.produto, produtoControlador.produtoCadastrar);
 
 //Editar dados do produto
 rotas.get('/produto', validarCamposInter.produtosPorCategoria, produtoControlador.produtosListar);
@@ -47,7 +47,6 @@ rotas.get('/cliente/:id', clienteControlador.detalharCliente);
 
 // Pedido
 rotas.post('/pedido', validarCamposInter.pedido, pedidoControlador.cadastrarPedido);
-rotas.get('/pedido/:id', pedidosListar)
 rotas.get('/pedido', pedidosListar)
 
 module.exports = rotas;

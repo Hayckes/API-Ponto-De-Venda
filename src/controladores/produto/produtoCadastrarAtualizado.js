@@ -23,6 +23,7 @@ const produtoCadastrar = async (req, res) => {
       file.buffer,
       file.mimetype
     );
+    //return console.log(arquivo);
 
     const produto = (
       await produtoRepositorio.cadastrarProdutos({
@@ -30,10 +31,10 @@ const produtoCadastrar = async (req, res) => {
         quantidade_estoque,
         valor,
         categoria_id,
-        imagem: arquivo.url
+        imagem: `https://${process.env.BACKBLAZE_BUCKET}.${process.env.ENDPOINT_S3}/${arquivo.path}`
       })
     )[0];
-
+      //https://meuprimeirobalde.s3.us-east-005.backblazeb2.com/produtos/bg-teclado-cafe.jpg
     if (!produto) {
       return res.status(400).json("O produto não foi cadastrado");
     }
