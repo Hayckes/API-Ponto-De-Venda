@@ -16,7 +16,6 @@ const produtosExcluir = async (req, res) => {
     }
 
     const existeProduto = (await produtoRepositorio.excluirProdutos({ id }))[0];
-    //return console.log(existeProduto);
 
     if (!existeProduto) {
       return res.status(404).json({ mensagem: 'Produto não encontrado' });
@@ -26,7 +25,6 @@ const produtosExcluir = async (req, res) => {
 
     return res.status(204).send();
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ mensagem: 'Erro interno no servidor' });
   }
 };
